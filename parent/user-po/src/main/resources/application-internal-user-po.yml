@@ -1,0 +1,2 @@
+mybatis-plus:
+  type-enums-package: com.thy.backend.parent.user.po.enums
