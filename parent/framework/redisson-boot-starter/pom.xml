@@ -7,10 +7,9 @@
         <groupId>com.thy.backend</groupId>
         <artifactId>framework</artifactId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath>../../framework/pom.xml</relativePath>
     </parent>
 
-    <artifactId>mp-boot-starter</artifactId>
+    <artifactId>redisson-boot-starter</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -18,22 +17,18 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-
     <dependencies>
         <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
-        </dependency>
+
         <dependency>
             <groupId>com.thy.backend</groupId>
-            <artifactId>base</artifactId>
+            <artifactId>util-boot-starter</artifactId>
             <version>${project.version}</version>
-            <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>com.thy.backend</groupId>
             <artifactId>redisson-boot-starter</artifactId>

@@ -7,6 +7,7 @@
         <groupId>com.thy.backend</groupId>
         <artifactId>framework</artifactId>
         <version>1.0-SNAPSHOT</version>
+        <relativePath>../../framework/pom.xml</relativePath>
     </parent>
 
     <artifactId>util-boot-starter</artifactId>
@@ -22,7 +23,6 @@
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
             <version>5.8.18</version>
-            <scope>provided</scope>
         </dependency>
     </dependencies>
 
