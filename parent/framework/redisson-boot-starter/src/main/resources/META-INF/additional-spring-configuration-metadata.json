@@ -1,0 +1,28 @@
+{
+  "properties": [
+    {
+      "name": "redisson.single.address",
+      "type": "java.lang.String",
+      "description": "address for redis.",
+      "defaultValue": ""
+    },
+    {
+      "name": "redisson.single.password",
+      "type": "java.lang.String",
+      "description": "password for redis.",
+      "defaultValue": ""
+    },
+    {
+      "name": "redisson.single.database",
+      "type": "java.lang.Integer",
+      "description": "database for redis.",
+      "defaultValue": ""
+    },
+    {
+      "name": "redisson.mode",
+      "type": "java.lang.String",
+      "description": "mode for redisson.",
+      "defaultValue": ""
+    }
+  ]
+}

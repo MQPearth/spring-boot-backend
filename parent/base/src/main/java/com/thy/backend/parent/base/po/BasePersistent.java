@@ -31,7 +31,7 @@ public class BasePersistent implements Serializable {
      * 主键
      */
     @TableId(type = IdType.ASSIGN_ID)
-    private Integer id;
+    private Long id;
 
     /**
      * 创建时间
@@ -53,13 +53,13 @@ public class BasePersistent implements Serializable {
      * 创建人
      */
     @TableField(BasePersistentTableCons.DB_FIELD_CREATOR)
-    private Integer creator;
+    private Long creator;
 
     /**
      * 修改人
      */
     @TableField(BasePersistentTableCons.DB_FIELD_MODIFIER)
-    private Integer modifier;
+    private Long modifier;
 
     /**
      * 是否删除
@@ -69,7 +69,7 @@ public class BasePersistent implements Serializable {
     private Boolean deleted;
 
 
-    public static <P extends BasePersistent> P fillBase(int creator, P p) {
+    public static <P extends BasePersistent> P fillBase(Long creator, P p) {
         p.setCreator(creator);
         p.setModifier(creator);
         return p;

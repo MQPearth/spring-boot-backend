@@ -36,6 +36,8 @@
         <spring-cloud-openfeign.version>4.0.2</spring-cloud-openfeign.version>
 
         <redisson.version>3.20.1</redisson.version>
+        <druid.version>1.2.17</druid.version>
+        <mysql.version>8.0.30</mysql.version>
     </properties>
 
     <dependencies>
@@ -68,12 +70,6 @@
             </dependency>
 
             <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>${lombok.version}</version>
-            </dependency>
-
-            <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus.version}</version>
@@ -91,6 +87,17 @@
                 <version>${spring-cloud-openfeign.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

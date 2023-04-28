@@ -1,12 +1,12 @@
 package com.thy.backend.parent.framework.redisson;
 
-import lombok.Getter;
+import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  * @author root
  */
-@Getter
+@Data
 @ConfigurationProperties(prefix = "redisson.single")
 public class RedissonSingleConfig {
 

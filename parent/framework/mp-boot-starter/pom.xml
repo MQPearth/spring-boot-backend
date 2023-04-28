@@ -32,12 +32,15 @@
             <groupId>com.thy.backend</groupId>
             <artifactId>base</artifactId>
             <version>${project.version}</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.thy.backend</groupId>
             <artifactId>redisson-boot-starter</artifactId>
             <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
         </dependency>
     </dependencies>
 

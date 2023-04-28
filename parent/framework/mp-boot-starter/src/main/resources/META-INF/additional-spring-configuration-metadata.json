@@ -1,0 +1,22 @@
+{
+  "properties": [
+    {
+      "name": "snowflake.redisson.address",
+      "type": "java.lang.String",
+      "description": "address for redis.",
+      "defaultValue": ""
+    },
+    {
+      "name": "snowflake.redisson.password",
+      "type": "java.lang.String",
+      "description": "password for redis.",
+      "defaultValue": ""
+    },
+    {
+      "name": "snowflake.redisson.database",
+      "type": "java.lang.Integer",
+      "description": "database for redis.",
+      "defaultValue": ""
+    }
+  ]
+}

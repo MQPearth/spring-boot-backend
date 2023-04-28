@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false" scan="false">
+
+    <!-- https://github.com/alibaba/spring-cloud-alibaba/issues/3261 -->
+
+    <springProperty scope="context" name="project-name" source="spring.application.name"/>
+
+    <property name="log.debug.path"
+              value="/data/logs/${project-name}/debug.log"/>
+
+    <property name="log.error.path"
+              value="/data/logs/${project-name}/error.log"/>
+
+
+    <!-- 控制台 -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%-8.8thread] %-5level %-60logger{60} : %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- debug日志文件输出 -->
+    <appender name="debugFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.debug.path}</file>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>debug</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.debug.path}.%d{yyyy-MM-dd}.zip</fileNamePattern>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%date [%-40X] [%thread] %-5level %logger{36} : %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- error日志文件输出 -->
+    <appender name="errorFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.error.path}</file>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>error</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.error.path}.%d{yyyy-MM-dd}.zip</fileNamePattern>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%date [%-40X] [%thread] %-5level %logger{36} [%file:%line] : %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.apache" level="info"/>
+    <logger name="org.apache.commons" level="info"/>
+    <logger name="org.springframework" level="info"/>
+    <logger name="com.thy.backend.user.service.user.web.dao" level="debug"/>
+
+    <root level="info">
+        <appender-ref ref="console"/>
+        <appender-ref ref="debugFile"/>
+        <appender-ref ref="errorFile"/>
+    </root>
+
+</configuration>

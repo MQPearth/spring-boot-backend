@@ -10,7 +10,7 @@
         <relativePath>../../api/pom.xml</relativePath>
     </parent>
 
-    <artifactId>common-api</artifactId>
+    <artifactId>api-common</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>

@@ -20,8 +20,24 @@
     <dependencies>
         <dependency>
             <groupId>com.thy.backend</groupId>
-            <artifactId>user-interfaces</artifactId>
+            <artifactId>user-po</artifactId>
             <version>${project.version}</version>
+            <exclusions>
+
+                <exclusion>
+                    <groupId>com.baomidou</groupId>
+                    <artifactId>mybatis-plus-annotation</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.baomidou</groupId>
+                    <artifactId>mybatis-plus-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.baomidou</groupId>
+                    <artifactId>mybatis-plus-extension</artifactId>
+                </exclusion>
+
+            </exclusions>
         </dependency>
     </dependencies>
 

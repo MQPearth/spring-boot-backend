@@ -23,7 +23,7 @@ public class UserProfilePO extends BasePersistent {
     @TableField("url")
     String url;
 
-    @TableField("trueName")
+    @TableField("true_name")
     String trueName;
 
     @TableField("gender")
