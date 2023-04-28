@@ -1,4 +1,4 @@
-package com.thy.backend.parent.framework.api.config;
+package com.thy.backend.parent.framework.web.config;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -23,7 +23,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public WebMvcConfig(List<CustomModule> moduleList) {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-
         objectMapper.registerModules(moduleList.stream().map(CustomModule::getSimpleModule).toList());
         this.objectMapper = objectMapper;
     }
@@ -36,6 +35,12 @@ public class WebMvcConfig implements WebMvcConfigurer {
         converter.setObjectMapper(objectMapper);
         converters.add(0, stringHttpMessageConverter);
         converters.add(0, converter);
+    }
+
+
+    public ObjectMapper objectMapperForOpenfeign() {
+
+        return objectMapper;
     }
 
 
