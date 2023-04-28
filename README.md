@@ -14,3 +14,4 @@
 * user-po user数据库对应的实体类及相关常量
 * mp-boot-starter 只允许被 *-web 的模块依赖
 * api-boot-starter 只允许被 *-api 的模块依赖
+* service-boot-starter 只允许被 *-web 的模块依赖

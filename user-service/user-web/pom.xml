@@ -27,7 +27,7 @@
 
         <dependency>
             <groupId>com.thy.backend</groupId>
-            <artifactId>web-boot-starter</artifactId>
+            <artifactId>service-boot-starter</artifactId>
             <version>${project.version}</version>
         </dependency>
 
