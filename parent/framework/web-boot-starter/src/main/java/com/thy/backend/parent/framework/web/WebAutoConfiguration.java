@@ -41,8 +41,11 @@ public class WebAutoConfiguration {
         om.registerModule(javaTimeModule.getSimpleModule());
         om.activateDefaultTyping(om.getPolymorphicTypeValidator(), ObjectMapper.DefaultTyping.EVERYTHING,
                 JsonTypeInfo.As.PROPERTY);
+
+        TypeFactory typeFactory = TypeFactory.defaultInstance();
+
         return (response, type) -> {
-            JavaType javaType = TypeFactory.defaultInstance().constructType(type);
+            JavaType javaType = typeFactory.constructType(type);
             return om.readValue(response.body().asInputStream(), javaType);
         };
     }

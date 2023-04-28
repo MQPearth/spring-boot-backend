@@ -6,6 +6,7 @@
 * SpringCloud
 * MyBatis-Plus
 * Redisson
+* Nacos 2.2.1
 
 ### 模块
 
