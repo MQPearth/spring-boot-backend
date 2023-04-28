@@ -1,4 +1,4 @@
-package com.thy.backend.parent.framework.exception;
+package com.thy.backend.parent.framework.api.exception;
 
 import com.thy.backend.parent.base.result.ApiResult;
 import com.thy.backend.parent.base.result.ResultEnum;

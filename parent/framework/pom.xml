@@ -15,8 +15,9 @@
     <modules>
         <module>util-boot-starter</module>
         <module>mp-boot-starter</module>
-        <module>exception-boot-starter</module>
+        <module>api-boot-starter</module>
         <module>redisson-boot-starter</module>
+        <module>web-boot-starter</module>
     </modules>
 
     <properties>

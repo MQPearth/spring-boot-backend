@@ -8,7 +8,6 @@ import org.redisson.config.SingleServerConfig;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 /**
@@ -19,7 +18,6 @@ import org.springframework.context.annotation.Import;
  * @date 2023/4/26 17:28:13
  */
 @Import(RedissonSingleConfig.class)
-@Configuration
 public class RedissonConfiguration {
 
     @Bean("redissonClient")

@@ -1,6 +1,7 @@
 package com.thy.backend.parent.user.po.enums;
 
 import com.baomidou.mybatisplus.annotation.EnumValue;
+import com.thy.backend.parent.base.enums.CodeEnum;
 import lombok.Getter;
 
 /**
@@ -10,25 +11,24 @@ import lombok.Getter;
  * @version 1.0
  * @date 2023/4/25 16:58:46
  */
-public enum UserProfileGenderEnum {
+@Getter
+public enum UserProfileGenderEnum implements CodeEnum {
     /**
      * 未知
      */
     UN_KNOW(0, "未知"),
     /**
-     * 男性
+     * 男
      */
-    MALE(1, "男性"),
+    MALE(1, "男"),
     /**
-     * 女性
+     * 女
      */
-    FEMALE(2, "女性");
+    FEMALE(2, "女");
 
     @EnumValue
-    @Getter
     private final int code;
 
-    @Getter
     private final String desc;
 
     UserProfileGenderEnum(int code, String desc) {
