@@ -21,19 +21,19 @@
         <dependency>
             <groupId>com.thy.backend</groupId>
             <artifactId>user-interfaces</artifactId>
-            <version>${project.version}</version>
+            <version>${backend-module.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.thy.backend</groupId>
             <artifactId>api-boot-starter</artifactId>
-            <version>${project.version}</version>
+            <version>${backend-module.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.thy.backend</groupId>
             <artifactId>api-common</artifactId>
-            <version>${project.version}</version>
+            <version>${backend-module.version}</version>
         </dependency>
     </dependencies>
 

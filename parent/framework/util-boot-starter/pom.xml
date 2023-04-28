@@ -26,7 +26,7 @@
         <dependency>
             <groupId>com.thy.backend</groupId>
             <artifactId>base</artifactId>
-            <version>${project.version}</version>
+            <version>${backend-module.version}</version>
         </dependency>
     </dependencies>
 
