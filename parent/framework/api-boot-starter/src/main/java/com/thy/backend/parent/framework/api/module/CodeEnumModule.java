@@ -1,4 +1,4 @@
-package com.thy.backend.parent.framework.api.config;
+package com.thy.backend.parent.framework.api.module;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonToken;
@@ -12,38 +12,21 @@ import com.fasterxml.jackson.databind.jsontype.TypeSerializer;
 import com.fasterxml.jackson.databind.module.SimpleDeserializers;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.type.ClassKey;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import com.thy.backend.parent.base.enums.CodeEnum;
-import com.thy.backend.parent.base.lang.CustomModule;
 import com.thy.backend.parent.framework.api.serializer.TypeEnumDeserializer;
-import org.springframework.context.annotation.Bean;
+import com.thy.backend.parent.framework.web.lang.CustomModule;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  * <p>CodeEnumModule</p>
  *
  * @author zzx
  * @version 1.0
- * @date 2023/4/28 11:03:55
+ * @date 2023/4/28 14:44:30
  */
-public class CustomModuleConfig {
-
-    @Bean("javaTimeModule")
-    public CustomModule javaTimeModule() {
-        JavaTimeModule timeModule = new JavaTimeModule();
-        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss:SSS");
-        timeModule.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(pattern));
-        timeModule.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(pattern));
-        return CustomModule.build(timeModule);
-    }
-
-    @Bean("codeEnumModule")
-    public CustomModule codeEnumModule() {
+public class CodeEnumModule extends CustomModule {
+    public CodeEnumModule() {
         var sm = new SimpleModule("codeEnumSimpleModule");
         // 自定义查找规则
         sm.setDeserializers(new SimpleDeserializers() {
@@ -85,6 +68,6 @@ public class CustomModuleConfig {
                 typeSer.writeTypeSuffix(gen, typeIdDef);
             }
         });
-        return CustomModule.build(sm);
+        this.simpleModule = sm;
     }
 }

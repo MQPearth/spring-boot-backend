@@ -2,7 +2,7 @@ package com.thy.backend.parent.framework.web.config;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.thy.backend.parent.base.lang.CustomModule;
+import com.thy.backend.parent.framework.web.lang.CustomModule;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
@@ -35,13 +35,13 @@ public class WebMvcConfig implements WebMvcConfigurer {
         converter.setObjectMapper(objectMapper);
         converters.add(0, stringHttpMessageConverter);
         converters.add(0, converter);
+
+        customizeConfigureMessageConverters(converters);
     }
 
 
-    public ObjectMapper objectMapperForOpenfeign() {
+    protected void customizeConfigureMessageConverters(List<HttpMessageConverter<?>> converters) {
 
-        return objectMapper;
     }
-
 
 }
