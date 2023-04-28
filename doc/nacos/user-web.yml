@@ -1,15 +1,9 @@
 redisson:
   mode: single
   single:
-    address: redis://127.0.0.1:6379
-    password: owl851124@owl.com
+    address: redis://192.168.222.129:6380
+    password: 123456
     database: 2
-
-snowflake:
-  redisson:
-    address: ${redisson.single.address}
-    password: ${redisson.single.password}
-    database: ${redisson.single.database}
 
 
 spring:

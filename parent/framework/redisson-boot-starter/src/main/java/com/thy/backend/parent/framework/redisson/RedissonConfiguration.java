@@ -4,6 +4,7 @@ import cn.hutool.core.util.StrUtil;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
+import org.redisson.config.SingleServerConfig;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
@@ -26,10 +27,26 @@ public class RedissonConfiguration {
     @ConditionalOnProperty(prefix = "redisson", name = "mode", havingValue = "single")
     public RedissonClient redissonClient(RedissonSingleConfig redissonSingleConfig) {
         Config config = new Config();
-        config.useSingleServer().setAddress(redissonSingleConfig.getAddress());
-        config.useSingleServer().setDatabase(redissonSingleConfig.getDatabase());
+        SingleServerConfig serverConfig = config.useSingleServer();
+        serverConfig.setAddress(redissonSingleConfig.getAddress());
+        serverConfig.setDatabase(redissonSingleConfig.getDatabase());
         if (StrUtil.isNotBlank(redissonSingleConfig.getPassword())) {
-            config.useSingleServer().setPassword(redissonSingleConfig.getPassword());
+            serverConfig.setPassword(redissonSingleConfig.getPassword());
+        }
+
+        if (redissonSingleConfig.getConnectionPoolSize() != null) {
+            serverConfig.setConnectionPoolSize(redissonSingleConfig.getConnectionPoolSize());
+        }
+
+        if (redissonSingleConfig.getConnectionMinimumIdleSize() != null) {
+            serverConfig.setConnectionMinimumIdleSize(redissonSingleConfig.getConnectionMinimumIdleSize());
+        }
+        if (redissonSingleConfig.getSubscriptionConnectionMinimumIdleSize() != null) {
+            serverConfig.setSubscriptionConnectionMinimumIdleSize(
+                    redissonSingleConfig.getSubscriptionConnectionMinimumIdleSize());
+        }
+        if (redissonSingleConfig.getSubscriptionConnectionPoolSize() != null) {
+            serverConfig.setSubscriptionConnectionPoolSize(redissonSingleConfig.getSubscriptionConnectionPoolSize());
         }
         return Redisson.create(config);
     }

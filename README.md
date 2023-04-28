@@ -1,6 +1,6 @@
 ## Spring-Boot-Backend
 
-> 学习项目
+> Demo
 
 * SpringBoot 3
 * SpringCloud

@@ -61,6 +61,8 @@ public class SnowflakeRedissonConfig implements SmartLifecycle {
         singleConfig.setConnectionPoolSize(1);
         singleConfig.setConnectionMinimumIdleSize(1);
         singleConfig.setSubscriptionConnectionMinimumIdleSize(1);
+        singleConfig.setSubscriptionConnectionPoolSize(1);
+
 
         RedissonClient client = Redisson.create(config);
 

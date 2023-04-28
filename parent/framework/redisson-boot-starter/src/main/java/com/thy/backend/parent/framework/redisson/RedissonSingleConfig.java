@@ -16,4 +16,12 @@ public class RedissonSingleConfig {
 
     private String password;
 
+    private Integer connectionPoolSize;
+
+    private Integer connectionMinimumIdleSize;
+
+    private Integer subscriptionConnectionPoolSize;
+
+    private Integer subscriptionConnectionMinimumIdleSize;
+
 }
