@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Import;
  */
 @Slf4j
 @Import({GlobalExceptionHandler.class, CodeEnumModule.class})
-public class ApiConfiguration {
+public class ApiAutoConfiguration {
 
 
 }

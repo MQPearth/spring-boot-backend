@@ -3,6 +3,7 @@ package com.thy.backend.parent.framework.web.config;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.thy.backend.parent.framework.web.lang.CustomModule;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
@@ -18,6 +19,7 @@ import java.util.List;
 @Slf4j
 public class WebMvcConfig implements WebMvcConfigurer {
 
+    @Getter
     private final ObjectMapper objectMapper;
 
     public WebMvcConfig(List<CustomModule> moduleList) {
@@ -32,11 +34,16 @@ public class WebMvcConfig implements WebMvcConfigurer {
         var stringHttpMessageConverter = new StringHttpMessageConverter(StandardCharsets.UTF_8);
         var converter = new MappingJackson2HttpMessageConverter();
 
-        converter.setObjectMapper(objectMapper);
+        converter.setObjectMapper(customizeObjectMapper(objectMapper));
         converters.add(0, stringHttpMessageConverter);
         converters.add(0, converter);
 
         customizeConfigureMessageConverters(converters);
+    }
+
+    protected ObjectMapper customizeObjectMapper(ObjectMapper objectMapper) {
+
+        return objectMapper;
     }
 
 

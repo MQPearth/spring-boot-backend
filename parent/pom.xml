@@ -35,7 +35,7 @@
         <!-- 依赖版本定义 -->
 
         <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
-        <spring-cloud-alibaba.version>2022.0.0.0-RC1</spring-cloud-alibaba.version>
+        <spring-cloud-alibaba.version>2022.0.0.0-RC2</spring-cloud-alibaba.version>
         <spring-cloud.version>2022.0.2</spring-cloud.version>
         <spring-cloud-openfeign.version>4.0.2</spring-cloud-openfeign.version>
 

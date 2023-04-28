@@ -1,1 +1,1 @@
-com.thy.backend.parent.framework.redisson.RedissonConfiguration
+com.thy.backend.parent.framework.redisson.RedissonAutoConfiguration

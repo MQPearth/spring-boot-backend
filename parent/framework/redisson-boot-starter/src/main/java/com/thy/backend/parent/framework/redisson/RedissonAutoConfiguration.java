@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Import;
  * @date 2023/4/26 17:28:13
  */
 @Import(RedissonSingleConfig.class)
-public class RedissonConfiguration {
+public class RedissonAutoConfiguration {
 
     @Bean("redissonClient")
     @ConditionalOnMissingBean
