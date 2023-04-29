@@ -84,6 +84,7 @@ public class SnowflakeRedissonConfig implements SmartLifecycle {
                     throw new Exception("雪花ID数据节点冲突: " + KEY);
                 }
                 inc++;
+                log.warn("雪花ID数据节点冲突, 发起重试, inc: {}", inc);
             }
             log.info("current snowflake node: {}", KEY);
         } catch (Exception e) {
