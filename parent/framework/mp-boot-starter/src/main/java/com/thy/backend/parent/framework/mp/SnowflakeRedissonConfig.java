@@ -121,14 +121,16 @@ public class SnowflakeRedissonConfig implements SmartLifecycle {
         try {
             if (Objects.nonNull(LOCK) && LOCK.isLocked()) {
                 LOCK.unlock();
+                log.info("雪花ID数据节点已释放, key: {}", KEY);
             }
         } catch (Exception e) {
             try {
                 if (Objects.nonNull(LOCK) && LOCK.isLocked()) {
                     LOCK.forceUnlock();
+                    log.info("雪花ID数据节点已强制释放, key: {}", KEY);
                 }
             } catch (Exception ex) {
-                log.error("雪花ID数据节点释放失败, key: {}", KEY, e);
+                log.error("雪花ID数据节点释放失败, key: {}", KEY, ex);
             }
         }
 
