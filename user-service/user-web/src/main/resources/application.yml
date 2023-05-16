@@ -1,5 +1,6 @@
 server:
   port: 9001
+  shutdown: graceful
 
 spring:
   profiles:
