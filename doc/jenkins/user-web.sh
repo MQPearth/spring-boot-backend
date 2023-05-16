@@ -3,7 +3,7 @@
 ### 构建时需要使用jdk17
 export JAVA_HOME=/usr/local/jdk/jdk17/
 
-### 停止之前启动的服务
+### 停止之前启动的服务, 通过stop命令停止容器, 并不断循环检测, 避免直接杀死导致其他问题
 docker container stop $(docker container ls -aq --filter "name=^$JOB_NAME")
 
 for CONTAINER_ID in $(docker container ls -aq --filter "name=^$JOB_NAME")
