@@ -1,6 +1,6 @@
 FROM library/openjdk:17.0.2-oracle
 VOLUME /data/logs/user-web/
-ADD ../../user-service/user-web/target/user-web.jar /root/user-web.jar
+ADD user-service/user-web/target/user-web.jar /root/user-web.jar
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai' > /etc/timezone
 EXPOSE 9001
 ENV JAVA_OPTS=""
