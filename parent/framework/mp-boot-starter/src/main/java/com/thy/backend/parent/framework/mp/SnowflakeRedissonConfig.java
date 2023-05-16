@@ -13,6 +13,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.SmartLifecycle;
 import org.springframework.context.annotation.Bean;
 
+import java.io.Closeable;
+import java.io.IOException;
 import java.util.Objects;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -27,7 +29,7 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 @Data
 @ConfigurationProperties(prefix = "snowflake.redisson")
-public class SnowflakeRedissonConfig implements SmartLifecycle {
+public class SnowflakeRedissonConfig implements SmartLifecycle, Closeable {
 
     private String address;
 
@@ -116,28 +118,39 @@ public class SnowflakeRedissonConfig implements SmartLifecycle {
 
     @Override
     public void stop() {
-        this.running = false;
+        doStop();
+    }
 
-        try {
-            if (Objects.nonNull(LOCK) && LOCK.isLocked()) {
-                LOCK.unlock();
-                log.info("The data node of the snowflake ID has been released, key: {}", KEY);
-            }
-        } catch (Exception e) {
+    @Override
+    public void close() throws IOException {
+        doStop();
+    }
+
+    public synchronized void doStop() {
+        if (this.running) {
+            this.running = false;
             try {
                 if (Objects.nonNull(LOCK) && LOCK.isLocked()) {
-                    LOCK.forceUnlock();
-                    log.info("The data node of the snowflake ID has been forcibly released, key: {}", KEY);
+                    LOCK.unlock();
+                    log.info("The data node of the snowflake ID has been released, key: {}", KEY);
                 }
-            } catch (Exception ex) {
-                log.error("The release of the data node for the snowflake ID has failed, key: {}", KEY, ex);
+            } catch (Exception e) {
+                try {
+                    if (Objects.nonNull(LOCK) && LOCK.isLocked()) {
+                        LOCK.forceUnlock();
+                        log.info("The data node of the snowflake ID has been forcibly released, key: {}", KEY);
+                    }
+                } catch (Exception ex) {
+                    log.error("The release of the data node for the snowflake ID has failed, key: {}", KEY, ex);
+                }
             }
         }
-
     }
 
     @Override
     public boolean isRunning() {
         return running;
     }
+
+
 }
