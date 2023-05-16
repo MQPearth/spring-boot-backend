@@ -5,4 +5,4 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shangh
 EXPOSE 9001
 ENV JAVA_OPTS=""
 ENV APP_OPTS=""
-ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar $APP_OPTS /root/user-web.jar"]
+ENTRYPOINT ["sh", "-c", "exec java $JAVA_OPTS -jar $APP_OPTS /root/user-web.jar"]
