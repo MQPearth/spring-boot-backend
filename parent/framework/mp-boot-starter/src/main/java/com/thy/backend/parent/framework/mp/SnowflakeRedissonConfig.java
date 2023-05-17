@@ -13,8 +13,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.SmartLifecycle;
 import org.springframework.context.annotation.Bean;
 
-import java.io.Closeable;
-import java.io.IOException;
 import java.util.Objects;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -29,7 +27,7 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 @Data
 @ConfigurationProperties(prefix = "snowflake.redisson")
-public class SnowflakeRedissonConfig implements SmartLifecycle, Closeable {
+public class SnowflakeRedissonConfig implements SmartLifecycle {
 
     private String address;
 
@@ -118,11 +116,6 @@ public class SnowflakeRedissonConfig implements SmartLifecycle, Closeable {
 
     @Override
     public void stop() {
-        doStop();
-    }
-
-    @Override
-    public void close() throws IOException {
         doStop();
     }
 
