@@ -3,6 +3,10 @@
 ### 构建时需要使用jdk17
 export JAVA_HOME=/usr/local/jdk/jdk17/
 
+cd $WORKSPACE/api/user-api/
+
+mvn clean package -Dmaven.test.skip=true
+
 ### 停止之前启动的服务(不论这个服务运行中还是已退出), 通过stop命令停止容器, 并不断循环检测, 避免直接杀死导致其他问题
 
 if docker ps -a --format '{{.Names}}' | grep -q "^$JOB_NAME-*"; then
@@ -34,10 +38,6 @@ do
 done
 
 echo "All images have been deleted"
-
-cd $WORKSPACE/user-service/user-web/
-
-mvn clean package -Dmaven.test.skip=true
 
 cd $WORKSPACE
 

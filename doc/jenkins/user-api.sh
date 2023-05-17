@@ -1,9 +1,14 @@
 ### jenkins的源码管理配置大同小异, 不管是gitee还是github都差不多, 主要是构建运行这一步, 这里记录一下
 
-### 构建时需要使用jdk17
+### step1: 构建时需要使用jdk17
 export JAVA_HOME=/usr/local/jdk/jdk17/
 
-### 停止之前启动的服务(不论这个服务运行中还是已退出), 通过stop命令停止容器, 并不断循环检测, 避免直接杀死导致其他问题
+cd $WORKSPACE/api/user-api/
+
+mvn clean package -Dmaven.test.skip=true
+
+
+### step2: 停止之前启动的服务(不论这个服务运行中还是已退出), 通过stop命令停止容器, 并不断循环检测, 避免直接杀死导致其他问题
 
 if docker ps -a --format '{{.Names}}' | grep -q "^$JOB_NAME-*"; then
   docker container stop $(docker container ls -aq --filter "name=^$JOB_NAME")
@@ -34,10 +39,6 @@ do
 done
 
 echo "All images have been deleted"
-
-cd $WORKSPACE/api/user-api/
-
-mvn clean package -Dmaven.test.skip=true
 
 cd $WORKSPACE
 
