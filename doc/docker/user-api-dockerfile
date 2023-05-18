@@ -13,6 +13,7 @@ USER java
 
 ADD api/user-api/target/user-api.jar /home/java/user-api.jar
 COPY doc/skywalking-agent/ /home/java/skywalking-agent/
+RUN chmod -R 750 /home/java/skywalking-agent/
 
 ENV JAVA_OPTS=""
 ENV APP_OPTS=""
