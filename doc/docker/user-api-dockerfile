@@ -12,7 +12,7 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shangh
 USER java
 
 ADD api/user-api/target/user-api.jar /home/java/user-api.jar
-COPY /usr/local/skywalking/agent/ /home/java/
+COPY doc/skywalking-agent/ /home/java/
 
 ENV JAVA_OPTS=""
 ENV APP_OPTS=""
