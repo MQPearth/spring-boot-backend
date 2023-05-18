@@ -19,6 +19,7 @@
         <module>redisson-boot-starter</module>
         <module>service-boot-starter</module>
         <module>web-boot-starter</module>
+        <module>log-boot-starter</module>
     </modules>
 
     <properties>

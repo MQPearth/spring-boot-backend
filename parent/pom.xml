@@ -43,6 +43,7 @@
         <druid.version>1.2.17</druid.version>
         <mysql.version>8.0.30</mysql.version>
         <hutool.version>5.8.18</hutool.version>
+        <apm-toolkit-logback-1.x.version>8.15.0</apm-toolkit-logback-1.x.version>
     </properties>
 
     <dependencies>
@@ -108,6 +109,12 @@
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.skywalking</groupId>
+                <artifactId>apm-toolkit-logback-1.x</artifactId>
+                <version>${apm-toolkit-logback-1.x.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
