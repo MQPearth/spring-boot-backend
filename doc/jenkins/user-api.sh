@@ -47,6 +47,6 @@ docker build -f $WORKSPACE/doc/docker/$JOB_NAME-dockerfile -t $JOB_NAME:$BUILD_N
 
 
 ### 启动容器 1. 指定ip 2. 将日志挂载出来 3. 传递jvm和应用参数
-docker run --name $JOB_NAME-$BUILD_NUMBER -p 8001:8001 --network rootnet --ip 172.19.0.7 -v /usr/local/jenkins/user-api/logs/:/data/logs/user-api/ -e JAVA_OPTS="-Xms256m -Xmx512m" -e APP_OPTS="-Dspring.profiles.active=prod -Dspring.cloud.nacos.discovery.server-addr=172.19.0.5 -Dspring.cloud.nacos.discovery.namespace=19a0fa32-ed2e-40f1-a1e1-aae8c81d8cf8" -d $JOB_NAME:$BUILD_NUMBER
+docker run --name $JOB_NAME-$BUILD_NUMBER -p 8001:8001 --network rootnet --ip 172.19.0.7 -v /usr/local/jenkins/user-api/logs/:/data/logs/user-api/ -e JAVA_OPTS="-javaagent:/home/java/agent/skywalking-agent.jar -Xms256m -Xmx512m" -e APP_OPTS="-Dspring.profiles.active=prod -Dspring.cloud.nacos.discovery.server-addr=172.19.0.5 -Dspring.cloud.nacos.discovery.namespace=19a0fa32-ed2e-40f1-a1e1-aae8c81d8cf8 -Dskywalking.agent.service_name=$JOB_NAME -Dskywalking.collector.backend_service=172.19.0.9:11800" -d $JOB_NAME:$BUILD_NUMBER
 
 echo "This build has been started"
