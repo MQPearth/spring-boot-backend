@@ -15,6 +15,6 @@ ENV JAVA_OPTS=""
 ENV APP_OPTS=""
 
 ADD api/user-api/target/user-api.jar /home/java/user-api.jar
-ADD /usr/local/skywalking/agent/ /home/java/agent/
+ADD /usr/local/skywalking/agent /home/java/
 
 ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar $APP_OPTS /home/java/user-api.jar"]
