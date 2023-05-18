@@ -13,7 +13,6 @@ ADD api/user-api/target/user-api.jar /home/java/user-api.jar
 COPY doc/skywalking-agent/ /home/java/skywalking-agent/
 
 RUN chown -R java /home/java/
-RUN chown -R java /home/java/
 
 RUN chmod -R 750 /home/java/
 
