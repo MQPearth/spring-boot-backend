@@ -2,7 +2,7 @@ FROM library/openjdk:17.0.2-oracle
 VOLUME /data/logs/user-api/
 EXPOSE 8001
 
-RUN chown -R java /data
+RUN chown -R java /data/
 RUN chmod -R 750 /data/logs/user-api/
 
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai' > /etc/timezone
