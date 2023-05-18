@@ -9,11 +9,15 @@ RUN chmod -R 750 /data/logs/user-api/
 
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai' > /etc/timezone
 
-USER java
-
 ADD api/user-api/target/user-api.jar /home/java/user-api.jar
 COPY doc/skywalking-agent/ /home/java/skywalking-agent/
-RUN chmod -R 750 /home/java/skywalking-agent/
+
+RUN chown -R java /home/java/
+RUN chown -R java /home/java/
+
+RUN chmod -R 750 /home/java/
+
+USER java
 
 ENV JAVA_OPTS=""
 ENV APP_OPTS=""
