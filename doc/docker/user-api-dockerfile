@@ -2,6 +2,9 @@ FROM library/openjdk:17.0.2-oracle
 VOLUME /data/logs/user-api/
 EXPOSE 8001
 
+ADD api/user-api/target/user-api.jar /home/java/user-api.jar
+ADD /usr/local/skywalking/agent /home/java/
+
 RUN adduser java
 
 RUN chown -R java /data
@@ -13,8 +16,5 @@ USER java
 
 ENV JAVA_OPTS=""
 ENV APP_OPTS=""
-
-ADD api/user-api/target/user-api.jar /home/java/user-api.jar
-ADD /usr/local/skywalking/agent /home/java/
 
 ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar $APP_OPTS /home/java/user-api.jar"]
