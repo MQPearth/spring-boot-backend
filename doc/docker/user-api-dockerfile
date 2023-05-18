@@ -2,9 +2,6 @@ FROM library/openjdk:17.0.2-oracle
 VOLUME /data/logs/user-api/
 EXPOSE 8001
 
-ADD api/user-api/target/user-api.jar /home/java/user-api.jar
-ADD /usr/local/skywalking/agent /home/java/
-
 RUN adduser java
 
 RUN chown -R java /data
@@ -13,6 +10,9 @@ RUN chmod -R 750 /data/logs/user-api/
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai' > /etc/timezone
 
 USER java
+
+ADD api/user-api/target/user-api.jar /home/java/user-api.jar
+ADD /usr/local/skywalking/agent /home/java/
 
 ENV JAVA_OPTS=""
 ENV APP_OPTS=""

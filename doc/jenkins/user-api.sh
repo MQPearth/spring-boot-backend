@@ -43,6 +43,9 @@ echo "All images have been deleted"
 cd $WORKSPACE
 
 ### 构建一个新镜像, 并且设置tag
+
+docker builder prune --all --force
+
 docker build -f $WORKSPACE/doc/docker/$JOB_NAME-dockerfile -t $JOB_NAME:$BUILD_NUMBER .
 
 
