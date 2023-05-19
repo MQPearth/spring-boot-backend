@@ -12,6 +12,10 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shangh
 ADD api/user-api/target/user-api.jar /home/java/user-api.jar
 COPY doc/skywalking-agent/ /home/java/skywalking-agent/
 
+RUN chown -R java /home/java/
+
+RUN chmod -R 750 /home/java/
+
 USER java
 
 ENV JAVA_OPTS=""
