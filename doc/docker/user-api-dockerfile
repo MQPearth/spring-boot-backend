@@ -5,16 +5,12 @@ EXPOSE 8001
 RUN adduser java
 RUN mkdir -p /data/logs/user-api/
 RUN chown -R java /data/
-RUN chmod -R 750 /data/logs/user-api/
+RUN chmod -R 750 /data/
 
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai' > /etc/timezone
 
 ADD api/user-api/target/user-api.jar /home/java/user-api.jar
 COPY doc/skywalking-agent/ /home/java/skywalking-agent/
-
-RUN chown -R java /home/java/
-
-RUN chmod -R 750 /home/java/
 
 USER java
 
