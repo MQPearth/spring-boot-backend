@@ -64,7 +64,6 @@
         <appender-ref ref="console"/>
         <appender-ref ref="debugFile"/>
         <appender-ref ref="errorFile"/>
-        <appender-ref ref="skywalking-log"/>
     </root>
 
 </configuration>
