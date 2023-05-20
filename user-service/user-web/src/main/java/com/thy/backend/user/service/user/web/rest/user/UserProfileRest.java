@@ -4,6 +4,7 @@ import com.thy.backend.parent.base.result.RestResult;
 import com.thy.backend.parent.user.po.po.UserProfilePO;
 import com.thy.backend.user.service.user.common.feign.user.UserProfileFeign;
 import com.thy.backend.user.service.user.web.service.user.UserProfileService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @version 1.0
  * @date 2023/4/27 10:46:01
  */
+@Slf4j
 @RequestMapping("/user-profile")
 @RestController
 public class UserProfileRest implements UserProfileFeign {
@@ -24,6 +26,7 @@ public class UserProfileRest implements UserProfileFeign {
 
     @Override
     public RestResult<UserProfilePO> test() {
+        log.error("test error", new RuntimeException("user-web"));
         return RestResult.ok(userProfileService.getById(1));
     }
 }
