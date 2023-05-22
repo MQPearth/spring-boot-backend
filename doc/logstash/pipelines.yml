@@ -1,0 +1,27 @@
+- pipeline.id: main
+  path.config: "/usr/share/logstash/pipeline"
+
+
+- pipeline.id: user-api-debug
+  queue.type: persisted
+  path.config: "/usr/share/logstash/config/conf.d/logstash-user-api-debug.conf"
+
+- pipeline.id: user-api-error
+  queue.type: persisted
+  path.config: "/usr/share/logstash/config/conf.d/logstash-user-api-error.conf"
+
+- pipeline.id: user-web-debug
+  queue.type: persisted
+  path.config: "/usr/share/logstash/config/conf.d/logstash-user-web-debug.conf"
+
+- pipeline.id: user-web-error
+  queue.type: persisted
+  path.config: "/usr/share/logstash/config/conf.d/logstash-user-web-error.conf"
+
+- pipeline.id: record-web-debug
+  queue.type: persisted
+  path.config: "/usr/share/logstash/config/conf.d/logstash-record-web-debug.conf"
+
+- pipeline.id: record-web-error
+  queue.type: persisted
+  path.config: "/usr/share/logstash/config/conf.d/logstash-record-web-error.conf"
