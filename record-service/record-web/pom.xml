@@ -5,12 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.thy.backend</groupId>
-        <artifactId>user-service</artifactId>
+        <artifactId>record-service</artifactId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath>../../user-service/pom.xml</relativePath>
     </parent>
 
-    <artifactId>user-web</artifactId>
+    <artifactId>record-web</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -18,7 +17,14 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+
     <dependencies>
+        <dependency>
+            <groupId>com.thy.backend</groupId>
+            <artifactId>record-common</artifactId>
+            <version>${backend-module.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>com.thy.backend</groupId>
             <artifactId>mp-boot-starter</artifactId>
@@ -34,11 +40,6 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.thy.backend</groupId>
-            <artifactId>user-common</artifactId>
-            <version>${backend-module.version}</version>
         </dependency>
 
     </dependencies>
@@ -85,5 +86,6 @@
             </resource>
         </resources>
     </build>
+
 
 </project>
