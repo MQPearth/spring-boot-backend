@@ -2,12 +2,14 @@
 
 > Demo
 
-* SpringBoot 3
+* SpringBoot3
 * SpringCloud
 * MyBatis-Plus
 * Redisson
-* Nacos 2.2.2
+* Nacos
 * SkyWalking
+* Docker
+* ELK
 
 ### 模块
 
