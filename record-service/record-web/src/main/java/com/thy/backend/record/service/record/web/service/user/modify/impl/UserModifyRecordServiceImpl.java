@@ -25,6 +25,7 @@ public class UserModifyRecordServiceImpl extends SuperServiceImpl<UserModifyReco
     @Override
     public ServiceResult<List<UserModifyRecordPO>> getByUserId(Long id) {
         log.info("param: {}", id);
+        log.error("error: {}", "getByUserId");
         return ServiceResult.ok(baseMapper.selectListByProperty("user_id", id));
     }
 }
