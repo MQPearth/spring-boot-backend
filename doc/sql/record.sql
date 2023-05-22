@@ -2,8 +2,8 @@ CREATE TABLE `user_modify_record`
 (
     `id`          bigint(0)                                             NOT NULL,
     `deleted`     tinyint(0)                                            NOT NULL,
-    `create_time` datetime(0)                                           NOT NULL,
-    `modify_time` datetime(0)                                           NULL DEFAULT NULL,
+    `create_time` datetime(3)                                           NOT NULL,
+    `modify_time` datetime(3)                                           NULL DEFAULT NULL,
     `creator`     bigint(0)                                             NOT NULL,
     `modifier`    bigint(0)                                             NULL DEFAULT NULL,
     `user_id`     bigint(0)                                             NOT NULL COMMENT '用户id',
