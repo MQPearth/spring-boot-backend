@@ -28,6 +28,6 @@ public class UserProfileRest implements UserProfileFeign {
     @Override
     public RestResult<UserProfilePO> test() {
         log.error("test error", new RuntimeException("user-web"));
-        return RestResult.ok(userProfileService.getById(1));
+        return RestResult.ok(userProfileService.getById(1660481187938119700L));
     }
 }
