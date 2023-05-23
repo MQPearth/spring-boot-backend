@@ -16,6 +16,7 @@
         <module>user-po</module>
         <module>record-po</module>
         <module>../record-service</module>
+        <module>../gateway</module>
     </modules>
 
     <parent>

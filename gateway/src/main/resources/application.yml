@@ -1,0 +1,29 @@
+server:
+  port: 8000
+  shutdown: graceful
+
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: gateway
+  cloud:
+    nacos:
+      username: nacos
+      password: nacos
+      discovery:
+        server-addr: 192.168.222.129:8849
+        group: DEFAULT_GROUP
+        namespace: 69b65d3b-77d2-481a-8f99-1643488f90fa
+      config:
+        group: DEFAULT_GROUP
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        namespace: ${spring.cloud.nacos.discovery.namespace}
+
+  config:
+    import:
+      - optional:nacos:${spring.application.name}.yml
+
+logging:
+  config: classpath:logback-spring.xml
