@@ -1,6 +1,6 @@
 FROM library/openjdk:17.0.2-oracle
 VOLUME /data/logs/gateway/
-EXPOSE 8000
+EXPOSE 10000
 
 RUN adduser java
 RUN mkdir -p /data/logs/gateway/
