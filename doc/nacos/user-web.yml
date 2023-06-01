@@ -1,7 +1,7 @@
 redisson:
   mode: single
   single:
-    address: redis://192.168.222.129:6380
+    address: redis://10.11.38.190:6380
     password: 123456
     database: 2
 
@@ -9,7 +9,7 @@ redisson:
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mysql://192.168.222.129:3307/user_test?tinyInt1isBit=false&nullCatalogMeansCurrent=true&autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
+    url: jdbc:mysql://10.11.38.190:3307/user_test?tinyInt1isBit=false&nullCatalogMeansCurrent=true&autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
     username: root
     password: 123456
     druid:

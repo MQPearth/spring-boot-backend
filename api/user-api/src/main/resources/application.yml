@@ -12,7 +12,7 @@ spring:
       username: nacos
       password: nacos
       discovery:
-        server-addr: 192.168.222.129:8849
+        server-addr: 10.11.38.190:8849
         group: DEFAULT_GROUP
         namespace: 69b65d3b-77d2-481a-8f99-1643488f90fa
       config:
