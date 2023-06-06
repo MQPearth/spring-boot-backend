@@ -1,0 +1,1 @@
+kubectl create ingress nacos -n nacos --class=nginx  --rule="nacos.k8s.com/*=nacos-headless:8848"
