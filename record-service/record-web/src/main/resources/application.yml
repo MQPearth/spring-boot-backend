@@ -26,9 +26,8 @@ spring:
 
 snowflake:
   redisson:
-    address: ${redisson.single.address}
-    password: ${redisson.single.password}
-    database: ${redisson.single.database}
+    node-address: ${redisson.cluster.node-address}
+    password: ${redisson.cluster.password}
 
 
 mybatis-plus:
