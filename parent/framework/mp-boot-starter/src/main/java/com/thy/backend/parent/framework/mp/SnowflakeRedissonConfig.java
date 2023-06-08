@@ -7,8 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.redisson.Redisson;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
+import org.redisson.config.ClusterServersConfig;
 import org.redisson.config.Config;
-import org.redisson.config.SingleServerConfig;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.SmartLifecycle;
 import org.springframework.context.annotation.Bean;
@@ -29,9 +29,8 @@ import java.util.concurrent.TimeUnit;
 @ConfigurationProperties(prefix = "snowflake.redisson")
 public class SnowflakeRedissonConfig implements SmartLifecycle {
 
-    private String address;
+    private String nodeAddress;
 
-    private Integer database;
 
     private String password;
 
@@ -52,17 +51,18 @@ public class SnowflakeRedissonConfig implements SmartLifecycle {
     public DefaultIdentifierGenerator defaultIdentifierGenerator(SnowflakeRedissonConfig redissonConfig)
             throws Exception {
         Config config = new Config();
-        SingleServerConfig singleConfig = config.useSingleServer();
-        singleConfig.setAddress(redissonConfig.getAddress());
-        singleConfig.setDatabase(redissonConfig.getDatabase());
+        ClusterServersConfig serversConfig = config.useClusterServers();
+        serversConfig.addNodeAddress(redissonConfig.getNodeAddress());
         if (StrUtil.isNotBlank(redissonConfig.getPassword())) {
-            config.useSingleServer().setPassword(redissonConfig.getPassword());
+            serversConfig.setPassword(redissonConfig.getPassword());
         }
-        singleConfig.setConnectionPoolSize(1);
-        singleConfig.setConnectionMinimumIdleSize(1);
-        singleConfig.setSubscriptionConnectionMinimumIdleSize(1);
-        singleConfig.setSubscriptionConnectionPoolSize(1);
 
+        serversConfig.setSubscriptionConnectionPoolSize(1);
+        serversConfig.setSubscriptionConnectionMinimumIdleSize(1);
+        serversConfig.setSlaveConnectionMinimumIdleSize(1);
+        serversConfig.setSlaveConnectionPoolSize(1);
+        serversConfig.setMasterConnectionMinimumIdleSize(1);
+        serversConfig.setMasterConnectionPoolSize(1);
 
         RedissonClient client = Redisson.create(config);
 
