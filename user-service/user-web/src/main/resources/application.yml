@@ -23,13 +23,6 @@ spring:
     import:
       - optional:nacos:${spring.application.name}.yml
 
-redisson:
-  mode: cluster
-  cluster:
-    ## 自动拓扑发现剩余节点
-    node-address: "redis://redis.redis:6379"
-    password: 123456
-
 
 snowflake:
   redisson:
