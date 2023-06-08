@@ -1,9 +1,9 @@
 redisson:
-  mode: single
-  single:
-    address: redis://10.11.38.190:6380
+  mode: cluster
+  cluster:
+    ## 自动拓扑发现剩余节点
+    node-address: "redis://redis.redis:6379"
     password: 123456
-    database: 2
 
 
 spring:
