@@ -1,0 +1,66 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Namespace","metadata":{"annotations":{},"labels":{"app.kubernetes.io/instance":"skywalking-ui","app.kubernetes.io/name":"skywalking-ui"},"name":"skywalking-ui"}}
+  labels:
+    app.kubernetes.io/instance: skywalking-ui
+    app.kubernetes.io/name: skywalking-ui
+  name: skywalking-ui
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: skywalking-ui
+  name: skywalking-ui
+  namespace: skywalking-ui
+spec:
+  ports:
+  - port: 8080
+    name: "8080"
+    nodePort: 31081
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: skywalking-ui
+  type: NodePort
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: skywalking-ui
+  namespace: skywalking-ui
+  labels: 
+    app: skywalking-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: skywalking-ui
+  template:
+    metadata:
+      labels: 
+        app: skywalking-ui
+    spec:
+      containers:
+      - name: skywalking-ui
+        image: apache/skywalking-ui:v9.4.0-java17
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+          name: "tcp-8080"
+        env:
+        - name: TZ
+          value: "Asia/Shanghai"
+        - name: SW_OAP_ADDRESS
+          value: "http://skywalking-oap.skywalking-oap:12800"
+        volumeMounts:
+        - name: localtime
+          mountPath: /etc/localtime
+          readOnly: true
+      volumes:
+      - name: localtime
+        hostPath:
+          path: /etc/localtime

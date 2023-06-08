@@ -89,7 +89,7 @@ spec:
       initContainers:
         - name: peer-finder-plugin-install
           image: nacos/nacos-peer-finder-plugin:1.1
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /home/nacos/plugins/peer-finder
               name: data
@@ -97,7 +97,7 @@ spec:
       containers:
         - name: nacos
           imagePullPolicy: IfNotPresent
-          image: nacos/nacos-server:latest
+          image: nacos/nacos-server:v2.2.3
           resources:
             requests:
               memory: "2Gi"

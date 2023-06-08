@@ -30,7 +30,7 @@ spec:
         app: user-api
     spec:
       imagePullSecrets:
-        - name: aliyun-docker
+      - name: aliyun-docker
       containers:
         - name: user-api-container
           image: registry.cn-hangzhou.aliyuncs.com/thy-k8s/user-api:latest
@@ -49,20 +49,20 @@ spec:
                 -Dspring.cloud.nacos.discovery.server-addr=nacos-headless.nacos 
                 -Dspring.cloud.nacos.discovery.namespace=19a0fa32-ed2e-40f1-a1e1-aae8c81d8cf8 
                 -Dskywalking.agent.service_name=user-api 
-                -Dskywalking.collector.backend_service=10.11.38.190:11800
+                -Dskywalking.collector.backend_service=skywalking-oap.skywalking-oap:11800
           volumeMounts:
             - name: log
               mountPath: "/data/logs/user-api/"
   volumeClaimTemplates:
-    - metadata:
-        name: log
-        annotations:
-          volume.beta.kubernetes.io/storage-class: "managed-nfs-storage"
-      spec:
-        accessModes: [ "ReadWriteOnce" ]
-        resources:
-          requests:
-            storage: 1Gi
+  - metadata:
+      name: log
+      annotations:
+        volume.beta.kubernetes.io/storage-class: "managed-nfs-storage"
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 1Gi    
 ---
 apiVersion: v1
 kind: Service
@@ -71,7 +71,7 @@ metadata:
   namespace: app
   annotations:
     kubectl.kubernetes.io/last-applied-configuration: |
-      {"apiVersion":"v1","kind":"Service","metadata":{"name":"user-api-service","namespace":"app"}}
+      {"apiVersion":"v1","kind":"Service","metadata":{"name":"user-api","namespace":"app"}}
 spec:
   type: NodePort
   selector:

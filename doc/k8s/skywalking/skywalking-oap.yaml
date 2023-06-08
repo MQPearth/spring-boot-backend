@@ -1,0 +1,91 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Namespace","metadata":{"annotations":{},"labels":{"app.kubernetes.io/instance":"skywalking-oap","app.kubernetes.io/name":"skywalking-oap"},"name":"skywalking-oap"}}
+  labels:
+    app.kubernetes.io/instance: skywalking-oap
+    app.kubernetes.io/name: skywalking-oap
+  name: skywalking-oap
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: skywalking-oap
+  name: skywalking-oap
+  namespace: skywalking-oap
+spec:
+  ports:
+  - port: 11800
+    name: "11800"
+    nodePort: 30081    
+    protocol: TCP
+    targetPort: 11800
+  - port: 12800
+    name: "12800"
+    nodePort: 30082
+    protocol: TCP
+    targetPort: 12800
+  selector:
+    app: skywalking-oap
+  type: NodePort
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: skywalking-oap
+  namespace: skywalking-oap
+  labels: 
+    app: skywalking-oap
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: skywalking-oap
+  template:
+    metadata:
+      labels: 
+        app: skywalking-oap
+    spec:
+      containers:
+      - name: skywalking-oap
+        image: apache/skywalking-oap-server:9.4.0-java17
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 11800
+          name: "tcp-11800"
+        - containerPort: 12800
+          name: "tcp-12800"
+        env:
+        - name: TZ
+          value: "Asia/Shanghai"
+        - name: SW_STORAGE
+          value: "elasticsearch"
+        - name: SW_STORAGE_ES_CLUSTER_NODES
+          value: "10.11.38.190:9200"
+        - name: SW_CLUSTER
+          value: "nacos"
+        - name: SW_CLUSTER_NACOS_HOST_PORT
+          value: "nacos-headless.nacos:8848"
+        - name: SW_CLUSTER_NACOS_NAMESPACE
+          value: "19a0fa32-ed2e-40f1-a1e1-aae8c81d8cf8"
+        - name: SW_CLUSTER_NACOS_USERNAME
+          value: "nacos"
+        - name: SW_CLUSTER_NACOS_PASSWORD
+          value: "nacos"
+        - name: SW_CLUSTER_INTERNAL_COM_HOST
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        - name: SW_CLUSTER_INTERNAL_COM_PORT
+          value: "11800"
+        volumeMounts:
+        - name: localtime
+          mountPath: /etc/localtime
+          readOnly: true
+      volumes:
+      - name: localtime
+        hostPath:
+          path: /etc/localtime
