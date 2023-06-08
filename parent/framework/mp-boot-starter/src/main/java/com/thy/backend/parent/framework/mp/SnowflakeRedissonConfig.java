@@ -50,7 +50,6 @@ public class SnowflakeRedissonConfig implements SmartLifecycle {
     @Bean
     public DefaultIdentifierGenerator defaultIdentifierGenerator(SnowflakeRedissonConfig redissonConfig)
             throws Exception {
-        log.info("node-address: {}, password: {}", redissonConfig.getNodeAddress(), redissonConfig.getPassword());
         Config config = new Config();
         ClusterServersConfig serversConfig = config.useClusterServers();
         serversConfig.addNodeAddress(redissonConfig.getNodeAddress());
