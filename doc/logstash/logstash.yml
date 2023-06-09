@@ -1,5 +1,5 @@
 http.host: "0.0.0.0"
-xpack.monitoring.elasticsearch.hosts: [ "http://172.19.0.8:9200" ]
+xpack.monitoring.elasticsearch.hosts: [ "http://10.11.38.190:9200" ]
 
 #Logstash将其日志写到的目录
 path.logs: /usr/share/logstash/logs
