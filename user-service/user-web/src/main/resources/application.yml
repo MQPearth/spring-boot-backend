@@ -37,3 +37,13 @@ mybatis-plus:
 
 logging:
   config: classpath:logback-spring.xml
+
+
+
+management:
+  server:
+    port: 9484
+  endpoints:
+    web:
+      exposure:
+        include: '*'
