@@ -40,6 +40,7 @@ spec:
               cpu: "200m"
           ports:
             - containerPort: 8001
+            - containerPort: 9484
           env:
             - name: JAVA_OPTS
               value: "-javaagent:/home/java/skywalking-agent/skywalking-agent.jar -Xms256m -Xmx512m"
@@ -82,3 +83,8 @@ spec:
       nodePort: 30088
       port: 80
       targetPort: 8001
+    - name: prometheus
+      protocol: TCP
+      nodePort: 30087
+      port: 9484
+      targetPort: 9484
