@@ -39,3 +39,7 @@ do
 done
 
 echo "All images have been deleted"
+
+### 重启k8s Stateful
+
+curl -X PUT -H "Content-Type: application/yaml" -H "Cookie: KuboardUsername=admin; KuboardAccessKey=s7tdkinzwaa5.x3apipkyw7jxc3arwayk7535pk6f5c2k" -d '{"kind":"statefulsets","namespace":"app","name":"'"$JOB_NAME"'"}' "http://10.11.38.31:801/kuboard-api/cluster/master/kind/CICDApi/admin/resource/restartWorkload"
