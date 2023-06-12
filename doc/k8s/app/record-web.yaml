@@ -83,8 +83,3 @@ spec:
       nodePort: 30288
       port: 80
       targetPort: 9002
-    - name: prometheus
-      protocol: TCP
-      nodePort: 30287
-      port: 9484
-      targetPort: 9484
