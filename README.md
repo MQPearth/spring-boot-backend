@@ -11,6 +11,9 @@
 * Docker
 * ELK
 * Kubernetes
+* Prometheus
+* Grafana
+* Jenkins
 
 ### 模块
 
