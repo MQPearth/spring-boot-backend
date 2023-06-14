@@ -11,7 +11,8 @@ import org.springframework.context.annotation.Import;
  * @author thy
  */
 @Slf4j
-@Import({MetaPersistentObjectHandler.class, SnowflakeRedissonConfig.class})
+@Import({MetaPersistentObjectHandler.class, SnowflakeRedissonConfig.class, SnowflakeRedissonSingleConfig.class,
+        SnowflakeRedissonClusterConfig.class})
 public class MybatisAutoConfiguration {
 
 

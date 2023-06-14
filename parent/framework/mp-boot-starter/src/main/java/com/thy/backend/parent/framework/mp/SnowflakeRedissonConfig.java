@@ -2,16 +2,18 @@ package com.thy.backend.parent.framework.mp;
 
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.incrementer.DefaultIdentifierGenerator;
-import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.Redisson;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.ClusterServersConfig;
 import org.redisson.config.Config;
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.redisson.config.SingleServerConfig;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.SmartLifecycle;
 import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
 import java.util.Objects;
 import java.util.Random;
@@ -25,15 +27,8 @@ import java.util.concurrent.TimeUnit;
  * @date 2023/4/26 18:18:46
  */
 @Slf4j
-@Data
-@ConfigurationProperties(prefix = "snowflake.redisson")
+@Component
 public class SnowflakeRedissonConfig implements SmartLifecycle {
-
-    private String nodeAddress;
-
-
-    private String password;
-
 
     private static long WORKER_ID;
 
@@ -48,23 +43,11 @@ public class SnowflakeRedissonConfig implements SmartLifecycle {
     private volatile boolean running = false;
 
     @Bean
-    public DefaultIdentifierGenerator defaultIdentifierGenerator(SnowflakeRedissonConfig redissonConfig)
-            throws Exception {
-        Config config = new Config();
-        ClusterServersConfig serversConfig = config.useClusterServers();
-        serversConfig.addNodeAddress(redissonConfig.getNodeAddress());
-        if (StrUtil.isNotBlank(redissonConfig.getPassword())) {
-            serversConfig.setPassword(redissonConfig.getPassword());
-        }
-
-        serversConfig.setSubscriptionConnectionPoolSize(1);
-        serversConfig.setSubscriptionConnectionMinimumIdleSize(1);
-        serversConfig.setSlaveConnectionMinimumIdleSize(1);
-        serversConfig.setSlaveConnectionPoolSize(1);
-        serversConfig.setMasterConnectionMinimumIdleSize(1);
-        serversConfig.setMasterConnectionPoolSize(1);
-
-        RedissonClient client = Redisson.create(config);
+    public DefaultIdentifierGenerator defaultIdentifierGenerator(
+            @Value("snowflake.redisson.mode") String mode,
+            ApplicationContext context
+    ) throws Exception {
+        RedissonClient client = getRedissonClient(mode, context);
 
         Random random = new Random();
         try {
@@ -93,6 +76,50 @@ public class SnowflakeRedissonConfig implements SmartLifecycle {
         }
 
         return new DefaultIdentifierGenerator(WORKER_ID, DATA_CENTER_ID);
+    }
+
+    private RedissonClient getRedissonClient(String mode, ApplicationContext context) {
+        if ("cluster".equals(mode)) {
+            return redissonClientCluster(context.getBean(SnowflakeRedissonClusterConfig.class));
+        } else {
+            return redissonClientSingle(context.getBean(SnowflakeRedissonSingleConfig.class));
+        }
+    }
+
+    public RedissonClient redissonClientCluster(SnowflakeRedissonClusterConfig redissonConfig) {
+        Config config = new Config();
+        ClusterServersConfig serversConfig = config.useClusterServers();
+        serversConfig.addNodeAddress(redissonConfig.getNodeAddress());
+        if (StrUtil.isNotBlank(redissonConfig.getPassword())) {
+            serversConfig.setPassword(redissonConfig.getPassword());
+        }
+
+        serversConfig.setSubscriptionConnectionPoolSize(1);
+        serversConfig.setSubscriptionConnectionMinimumIdleSize(1);
+        serversConfig.setSlaveConnectionMinimumIdleSize(1);
+        serversConfig.setSlaveConnectionPoolSize(1);
+        serversConfig.setMasterConnectionMinimumIdleSize(1);
+        serversConfig.setMasterConnectionPoolSize(1);
+
+        return Redisson.create(config);
+    }
+
+
+    public RedissonClient redissonClientSingle(SnowflakeRedissonSingleConfig redissonConfig) {
+        Config config = new Config();
+        SingleServerConfig singleConfig = config.useSingleServer();
+        singleConfig.setAddress(redissonConfig.getAddress());
+        singleConfig.setDatabase(redissonConfig.getDatabase());
+
+        if (StrUtil.isNotBlank(redissonConfig.getPassword())) {
+            singleConfig.setPassword(redissonConfig.getPassword());
+        }
+        singleConfig.setConnectionPoolSize(1);
+        singleConfig.setConnectionMinimumIdleSize(1);
+        singleConfig.setSubscriptionConnectionMinimumIdleSize(1);
+        singleConfig.setSubscriptionConnectionPoolSize(1);
+
+        return Redisson.create(config);
     }
 
     public static long getWorkerId() {
