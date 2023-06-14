@@ -44,7 +44,7 @@ public class SnowflakeRedissonConfig implements SmartLifecycle {
 
     @Bean
     public DefaultIdentifierGenerator defaultIdentifierGenerator(
-            @Value("snowflake.redisson.mode") String mode,
+            @Value("${snowflake.redisson.mode}") String mode,
             ApplicationContext context
     ) throws Exception {
         log.info("mode: {}", mode);
