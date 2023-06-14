@@ -47,7 +47,7 @@ public class SnowflakeRedissonConfig implements SmartLifecycle {
             @Value("snowflake.redisson.mode") String mode,
             ApplicationContext context
     ) throws Exception {
-        log.info("mode: {}", mode)
+        log.info("mode: {}", mode);
         RedissonClient client = getRedissonClient(mode, context);
 
         Random random = new Random();
