@@ -33,7 +33,6 @@
         <dependency>
             <groupId>com.thy.backend</groupId>
             <artifactId>log-boot-starter</artifactId>
-            <version>${backend-module.version}</version>
         </dependency>
 
         <dependency>

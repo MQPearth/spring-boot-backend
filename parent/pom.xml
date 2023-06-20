@@ -119,6 +119,99 @@
                 <artifactId>apm-toolkit-logback-1.x</artifactId>
                 <version>${apm-toolkit-logback-1.x.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.thy.backend</groupId>
+                <artifactId>user-interfaces</artifactId>
+                <version>${backend-module.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.thy.backend</groupId>
+                <artifactId>record-interfaces</artifactId>
+                <version>${backend-module.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.thy.backend</groupId>
+                <artifactId>api-boot-starter</artifactId>
+                <version>${backend-module.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.thy.backend</groupId>
+                <artifactId>api-common</artifactId>
+                <version>${backend-module.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.thy.backend</groupId>
+                <artifactId>util-boot-starter</artifactId>
+                <version>${backend-module.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>com.thy.backend</groupId>
+                <artifactId>log-boot-starter</artifactId>
+                <version>${backend-module.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.thy.backend</groupId>
+                <artifactId>mp-boot-starter</artifactId>
+                <version>${backend-module.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.thy.backend</groupId>
+                <artifactId>service-boot-starter</artifactId>
+                <version>${backend-module.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.thy.backend</groupId>
+                <artifactId>user-common</artifactId>
+                <version>${backend-module.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.thy.backend</groupId>
+                <artifactId>web-boot-starter</artifactId>
+                <version>${backend-module.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.thy.backend</groupId>
+                <artifactId>base</artifactId>
+                <version>${backend-module.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.thy.backend</groupId>
+                <artifactId>redisson-boot-starter</artifactId>
+                <version>${backend-module.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.thy.backend</groupId>
+                <artifactId>user-po</artifactId>
+                <version>${backend-module.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.thy.backend</groupId>
+                <artifactId>record-po</artifactId>
+                <version>${backend-module.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.thy.backend</groupId>
+                <artifactId>record-common</artifactId>
+                <version>${backend-module.version}</version>
+            </dependency>
+
+
         </dependencies>
     </dependencyManagement>
 

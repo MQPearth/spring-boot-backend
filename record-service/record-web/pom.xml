@@ -22,19 +22,16 @@
         <dependency>
             <groupId>com.thy.backend</groupId>
             <artifactId>record-common</artifactId>
-            <version>${backend-module.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.thy.backend</groupId>
             <artifactId>mp-boot-starter</artifactId>
-            <version>${backend-module.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.thy.backend</groupId>
             <artifactId>service-boot-starter</artifactId>
-            <version>${backend-module.version}</version>
         </dependency>
 
         <dependency>

@@ -31,12 +31,10 @@
         <dependency>
             <groupId>com.thy.backend</groupId>
             <artifactId>base</artifactId>
-            <version>${backend-module.version}</version>
         </dependency>
         <dependency>
             <groupId>com.thy.backend</groupId>
             <artifactId>redisson-boot-starter</artifactId>
-            <version>${backend-module.version}</version>
         </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
